@@ -18,9 +18,21 @@ const Quotecard = () => {
     fetchApi();
   }, []);
 
+  const [currentQuote, setCurrentQuote] = useState(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+   const generateNewQuote = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      setCurrentQuote(quotes[randomIndex]);
+      setIsAnimating(false);
+    }, 300);
+  };
+
   return (
     <>
-      {quotes.map((item) => (
+      {(currentQuote ? [currentQuote] : quotes).map((item) => (
         // <div key={item.id} style={{width:'50%'}}>
         //   <div className="text-bg-light mb-3 w-auto text-white rounded bg-pink-400 m-auto p-10 border rounded-xl shadow-lg">
         //     <span className="p-10">
@@ -54,10 +66,11 @@ const Quotecard = () => {
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <button
-                  // onClick={generateNewQuote}
-                  className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                  onClick={generateNewQuote}
+                  disabled={isAnimating}
+                  className={`flex items-center gap-2 text-white px-6 py-3 rounded-full font-medium shadow-lg transition-all duration-200 ${isAnimating ? 'opacity-50 cursor-not-allowed' : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:shadow-xl transform hover:scale-105'}`}
                 >
-                  Genrate New Quote
+                  {isAnimating ? 'Generating...' : 'Generate New Quote'}
                 </button>
 
               </div>
