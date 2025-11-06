@@ -5,5 +5,5 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
-  base: process.env,VITE_BASE_PATH || "/my-quote-gen",
+  base: process.env.VITE_BASE_PATH || "/my-quote-gen",
 })
