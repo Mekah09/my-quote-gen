@@ -33,15 +33,6 @@ const Quotecard = () => {
   return (
     <>
       {(currentQuote ? [currentQuote] : quotes).map((item) => (
-        // <div key={item.id} style={{width:'50%'}}>
-        //   <div className="text-bg-light mb-3 w-auto text-white rounded bg-pink-400 m-auto p-10 border rounded-xl shadow-lg">
-        //     <span className="p-10">
-        //       <p>"{item.quote}"</p>
-        //     </span>
-
-        //   </div>
-        // </div>
-
         <div key={item.id} className="min-h-screen bg-pink-500 flex items-center justify-center p-4">
           <div className="w-full max-w-2xl">
             <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 transform transition-all duration-300 hover:shadow-3xl">
